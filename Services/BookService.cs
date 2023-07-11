@@ -82,6 +82,7 @@ public class BookService
     public void CheckoutBook(int bookId, int userId, int checkOutCopies)
     {
         Book book;
+        User user;
         var context = new LibraryContext();
         if (context.Relations.Any(r => (r.BookId == bookId && r.UserId == userId)))
         {
@@ -93,8 +94,9 @@ public class BookService
         }
         else
         {
-            context.Relations.Add(new BorrowRelationModel(){Copies = checkOutCopies, BookId = bookId, UserId = userId});
             book = context.Books.Find(bookId);
+            user = context.Users.Find(userId);
+            context.Relations.Add(new BorrowRelationModel(){Copies = checkOutCopies, BookId = bookId, UserId = userId, Author = book.Author, Title = book.Title, FirstName = user.FirstName, LastName = user.LastName});
             book.AvailableCopies -= checkOutCopies;
             
         }
@@ -104,29 +106,9 @@ public class BookService
         }
     }
 
-    public List<BorrowRelationExtModel> GetRelationsByBookId(int bookId)
+    public List<BorrowRelationModel> GetRelationsByBookId(int bookId)
     {
         var context = new LibraryContext();
-        Book book;
-        User user;
-        List<BorrowRelationModel> relations = context.Relations.Where(r => (r.BookId == bookId)).ToList();
-        List<BorrowRelationExtModel> extendedRelations = new List<BorrowRelationExtModel>();
-        foreach (var relation in relations)
-        {
-            BorrowRelationExtModel extendedRelation = new BorrowRelationExtModel();
-            extendedRelation.Copies = relation.Copies;
-            extendedRelation.RelationId = relation.RelationId;
-            extendedRelation.BookId = relation.BookId;
-            extendedRelation.UserId = relation.UserId;
-            book = context.Books.Find(bookId);
-            extendedRelation.Author = book.Author;
-            extendedRelation.Title = book.Title;
-            user = context.Users.Find(relation.UserId);
-            extendedRelation.FirstName = user.FirstName;
-            extendedRelation.LastName = user.LastName;
-            extendedRelations.Add(extendedRelation);
-        }
-
-        return extendedRelations;
+        return context.Relations.Where(r => (r.BookId == bookId)).ToList();
     }
 }

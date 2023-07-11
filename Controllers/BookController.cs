@@ -88,7 +88,7 @@ public class BookController : Controller
 
     public IActionResult Borrowers(int bookId)
     {
-        List<BorrowRelationExtModel> relations = _service.GetRelationsByBookId(bookId);
+        List<BorrowRelationModel> relations = _service.GetRelationsByBookId(bookId);
         BorrowersPageModel model = _mapper.GetBorrowersPageModel(relations);
         return View(model);
     }

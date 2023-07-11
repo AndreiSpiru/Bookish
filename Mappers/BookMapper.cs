@@ -9,7 +9,7 @@ public class BookMapper
         return new BookPageModel{ Books = books };
     }
 
-    public BorrowersPageModel GetBorrowersPageModel(List<BorrowRelationExtModel> relations)
+    public BorrowersPageModel GetBorrowersPageModel(List<BorrowRelationModel> relations)
     {
         return new BorrowersPageModel { Relations = relations };
     }

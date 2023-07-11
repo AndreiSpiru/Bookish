@@ -2,6 +2,6 @@
 
 public class BorrowersPageModel
 {
-    public List<BorrowRelationExtModel> Relations;
+    public List<BorrowRelationModel> Relations;
     
 }
