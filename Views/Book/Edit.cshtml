@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Edit";
+}
+<html>
+<body>
+<form method="post" action="">
+    Number of copies:<br />
+    <input type="number" name="Copies" value=@Model.Copies /><br />
+    Book Title:<br />
+    <input type="text" name="Title" value=@Model.Title /><br /><br />
+    Author:<br />
+    <input type="text" name="Author" value=@Model.Author /><br /><br />
+    <input type="submit" value="Save" class="submit" />
+    
+</form>
+
+</body> 
+</html>

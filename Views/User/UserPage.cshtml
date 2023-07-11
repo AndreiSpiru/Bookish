@@ -1,0 +1,84 @@
+﻿@{  
+    ViewBag.Title = "Library Users";  
+}  
+  
+  
+<h2>Library Users</h2>  
+<div>  
+    <table id="t01">  
+        <thead>  
+        <th>UserId @Html.ActionLink("Sort", "UserPage", new {sortBy = 0})</th>  
+        <th>FirstName @Html.ActionLink("Sort", "UserPage", new {sortBy = 1})</th>  
+        <th>LastName @Html.ActionLink("Sort", "UserPage", new {sortBy = 2})</th>  
+        <th>Delete</th>
+        <th>Edit</th>
+        <th>Check In</th>
+        <th>See Borrowed Books</th>
+        
+        </thead>  
+        @foreach (var item in Model.Users)  
+        {  
+  
+            <tr>  
+                <td>  
+                    @item.UserId  
+                </td>  
+                <td>  
+                    @item.FirstName  
+                </td>  
+                <td>  
+                    @item.LastName
+                </td>
+                <td>  
+                    @Html.ActionLink("Delete entry", "Delete", new {id = item.UserId})
+                </td>  
+                <td>  
+                    @Html.ActionLink("Edit entry", "Edit", new {id = item.UserId})
+                </td>
+                <td>  
+                    @Html.ActionLink("Checkin", "Checkin", new {userId = item.UserId})
+                </td> 
+                <td>  
+                    @Html.ActionLink("See Borrowed Books", "BorrowedBooks", new {userId = item.UserId})
+                </td> 
+            </tr>  
+  
+        }  
+  
+    </table> 
+    </div>  
+    <input type="button" value="Create" onclick="location.href='@Url.Action("Create", "User")'" />
+    <div>
+</div>  
+
+<style>  
+table#t01 {  
+width: 100%;  
+background-color: #f1f1c1;  
+}  
+  
+table#t01 tr:nth-child(even) {  
+background-color: #eee;  
+}  
+table#t01 tr:nth-child(odd) {  
+background-color: #fff;  
+}  
+table#t01 th {  
+color: white;  
+background-color:blue;  
+}  
+table, th, td {  
+border: 1px solid black;  
+}  
+table, th, td {  
+border: 1px solid black;  
+border-collapse: collapse;  
+}  
+table, th, td {  
+border: 1px solid black;  
+border-collapse: collapse;  
+}  
+th, td {  
+padding: 15px;  
+}  
+</style>

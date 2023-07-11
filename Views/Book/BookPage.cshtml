@@ -1,0 +1,101 @@
+﻿@{  
+    ViewBag.Title = "Library Books";  
+}  
+  
+  
+<h2>Library Books</h2>  
+<div>  
+    <table id="t01">  
+        <thead>  
+        <th>BookId @Html.ActionLink("Sort", "BookPage", new {sortBy = 0})</th>  
+        <th>Total Copies @Html.ActionLink("Sort", "BookPage", new {sortBy = 3})</th> 
+        <th>Available Copies @Html.ActionLink("Sort", "BookPage", new {sortBy = 4})</th>
+        <th>Author @Html.ActionLink("Sort", "BookPage", new {sortBy = 1})</th>  
+        <th>Title @Html.ActionLink("Sort", "BookPage", new {sortBy = 2})</th>
+        <th>Delete</th>
+        <th>Edit</th>
+        <th>Add</th>
+        <th>Remove</th>
+        <th>Checkout</th>
+        <th>Borrowers</th>
+        </thead>  
+        @foreach (var item in Model.Books)  
+        {  
+  
+            <tr>  
+                <td>  
+                    @item.BookId  
+                </td>  
+                <td>  
+                    @item.Copies  
+                </td>  
+                <td>
+                    @item.AvailableCopies
+                </td>
+                <td>  
+                    @item.Author  
+                    
+                </td>  
+                <td>  
+                    @item.Title  
+                </td>
+                 <td>  
+                    @Html.ActionLink("Delete entry", "Delete", new {id = item.BookId})
+                 </td>  
+                <td>  
+                    @Html.ActionLink("Edit entry", "Edit", new {id = item.BookId})
+                </td>
+                <td>  
+                    @Html.ActionLink("Add Copy", "AddCopy", new {id = item.BookId})
+                </td>
+                <td>  
+                    @Html.ActionLink("Remove Copy", "RemoveCopy", new {id = item.BookId})
+                </td>  
+                <td>  
+                    @Html.ActionLink("Checkout", "CheckOut", new {bookId = item.BookId})
+                </td> 
+                <td>  
+                    @Html.ActionLink("See Borrowers", "Borrowers", new {bookId = item.BookId})
+                </td> 
+            </tr>  
+  
+        }  
+  
+    </table>  
+</div>  
+<input type="button" value="Create" onclick="location.href='@Url.Action("Create", "Book")'" />
+<div>
+    
+    
+</div>
+<style>  
+table#t01 {  
+width: 100%;  
+background-color: #f1f1c1;  
+}  
+  
+table#t01 tr:nth-child(even) {  
+background-color: #eee;  
+}  
+table#t01 tr:nth-child(odd) {  
+background-color: #fff;  
+}  
+table#t01 th {  
+color: white;  
+background-color:blue;  
+}  
+table, th, td {  
+border: 1px solid black;  
+}  
+table, th, td {  
+border: 1px solid black;  
+border-collapse: collapse;  
+}  
+table, th, td {  
+border: 1px solid black;  
+border-collapse: collapse;  
+}  
+th, td {  
+padding: 15px;  
+}  
+</style>

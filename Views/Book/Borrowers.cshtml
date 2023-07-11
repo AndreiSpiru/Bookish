@@ -1,0 +1,82 @@
+﻿@{  
+    ViewBag.Title = "Borrowers";  
+}  
+  
+  
+<h2>Borrowers</h2>  
+<div>  
+    <table id="t01">  
+        <thead>  
+        <th>BookId</th>  
+        <th>Title</th>  
+        <th>Author</th>  
+        <th>UserId</th>
+        <th>FirstName</th>
+        <th>LastName</th>  
+        <th>Number of copies borrowed</th>
+        </thead>  
+        @foreach (var item in Model.Relations)  
+        {  
+  
+            <tr>  
+                <td>  
+                    @item.BookId
+                </td>
+                <td> 
+                    @item.Title
+                </td>
+                <td> 
+                    @item.Author
+                </td>
+                <td>  
+                    @item.UserId  
+                </td> 
+                <td> 
+                    @item.FirstName
+                </td>
+                <td> 
+                    @item.LastName
+                </td>
+                <td> 
+                    @item.Copies
+                </td>
+                
+            </tr>  
+  
+        }  
+  
+    </table>  
+
+    
+</div>
+<style>  
+table#t01 {  
+width: 100%;  
+background-color: #f1f1c1;  
+}  
+  
+table#t01 tr:nth-child(even) {  
+background-color: #eee;  
+}  
+table#t01 tr:nth-child(odd) {  
+background-color: #fff;  
+}  
+table#t01 th {  
+color: white;  
+background-color:blue;  
+}  
+table, th, td {  
+border: 1px solid black;  
+}  
+table, th, td {  
+border: 1px solid black;  
+border-collapse: collapse;  
+}  
+table, th, td {  
+border: 1px solid black;  
+border-collapse: collapse;  
+}  
+th, td {  
+padding: 15px;  
+}  
+</style>
